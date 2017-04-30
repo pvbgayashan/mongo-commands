@@ -1,0 +1,145 @@
+// create or switch to database
+use database_name
+
+// find working database
+db
+
+// delete working database
+db.deleteDatabase()
+
+// insert data
+db.employees.insert(
+	- add collection(array of documents) or document data here -
+)
+
+// display collections
+show collections
+
+// display all data
+db.collection_name.find()
+
+// display all data in a pretty way
+db.collection_name.find().pretty()
+
+// display first document of collection
+db.collection_name.findOne()
+
+// delete document by id
+db.collection_name.remove(
+	{
+		"_id" : ObjectId(string_id)
+	}
+)
+
+// update document by id
+db.collection_name.update(
+	{
+		"_id" : ObjectId(string_id)
+	},
+	{
+		- add updated document data here -
+	}
+)
+
+// delete collection
+db.collection_name.drop()
+
+// find documents by criterias - AND
+db.collection_name.find(
+	{
+		"first_key" : value,
+		"second_key" : value
+	}
+)
+
+// find first document by criterias - AND
+db.collection_name.findOne(
+	{
+		"first_key" : value,
+		"second_key" : value
+	}
+)
+
+// find documents by criteria - OR
+db.collection_name.find(
+	{
+		$or : [
+			{
+				"first_key",
+				value
+			},
+			{
+				"second_key",
+				value
+			}
+		]
+	}
+)
+
+// find first documents by criterias - OR
+- same as the AND operation -
+
+// find documents with conditions
+db.collection_name.find(
+	{
+		"key" : {$gt : value}
+	}
+)
+
+// common conditions
+$gt > greater than
+$lt > less than
+$gte > greater than or equal
+$lte > less than or equal
+$ne > not equal
+
+// filter display fields
+db.collection_name.find(
+	{
+		"key" : 27
+	},
+	{
+		"display_key" : 1,
+		"not_display_key" : 0
+	}
+)
+
+// get first limited number of results
+db.collection_name.find().limit(limit_value)
+
+// skip first number of results
+db.collection_name.find().skip(skip_value)
+
+// looking for execution stats
+db.collection_name.find(
+	{
+		"key" : {$gt : value}
+	}
+).explain("executionStats")
+
+// indexing property
+db.collection_name.ensureIndex(
+	{
+		"age" : 1
+	}
+)
+
+// display indexes
+db.collection_name.getIndexes()
+
+// delete indexes
+db.collection_name.dropIndex(
+	{
+		"age" : 1
+	}
+)
+
+// aggregate functions
+db.collection_name.aggregate(
+	{
+		$group : {
+			_id : group_by_value,
+			calculation_label : calculation_criteria
+		}
+	}
+)
